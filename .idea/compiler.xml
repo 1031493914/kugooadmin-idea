@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="kugooadmin" options="-XDignore.symbol.file" />
+      <module name="kugooadmin" options="" />
     </option>
   </component>
 </project>
