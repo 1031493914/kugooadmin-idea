@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/task  http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<context:component-scan base-package="com.mvcweb" />
+	<mvc:annotation-driven />
+	
+	
+    <mvc:interceptors> 
+		 <mvc:interceptor>	  		
+			<mvc:mapping path="/**" /> 
+			<bean class="com.mvcweb.interceptor.LoginInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors> 
+
+
+	<!--配置 BoneCP数据源 -->
+	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<!-- 数据库驱动 -->  
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<!-- 相应驱动的jdbcUrl,你懂的 -->  
+		 <property name="jdbcUrl"
+			value="jdbc:mysql://47.52.238.166:3306/kugoo?useUnicode=true&amp;characterEncoding=utf8&amp;generateSimpleParameterMetadata=true" />
+		<property name="username" value="root" />
+		<property name="password" value="zhaimob2018" />
+		<!-- 检查数据库连接池中空闲连接的间隔时间，单位是分，默认值：240，如果要取消则设置为0 -->  
+		<property name="idleConnectionTestPeriodInMinutes" value="240" />
+		<!-- 连接池中未使用的链接最大存活时间，单位是分，默认值：60，如果要永远存活设置为0 -->  
+		<property name="idleMaxAgeInMinutes" value="60" />
+		<!-- 每个分区最大的连接数 -->  
+		<property name="maxConnectionsPerPartition" value="50" />
+		<!-- 每个分区最小的连接数 -->  
+		<property name="minConnectionsPerPartition" value="20" />
+		<!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定-->  
+		<property name="partitionCount" value="2" />
+		<!-- 每次去拿数据库连接的时候一次性要拿几个,默认值：2 -->  
+		<property name="acquireIncrement" value="5" />
+		<!-- 缓存prepared statements的大小，默认值：0 -->  
+		<property name="statementsCacheSize" value="0" />
+		<!-- 每个分区释放链接助理进程的数量，默认值：3，除非你的一个数据库连接的时间内做了很多工作，不然过多的助理进程会影响你的性能 -->  
+		<property name="releaseHelperThreads" value="3" />
+		<!-- 获取连接的时候最大的等待时间-->
+		<property name="connectionTimeoutInMs" value="5000" />
+	</bean>
+
+
+	<!-- Enable transactionManager 启用事务管理 -->
+	<bean name="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- Configuration Transaction -->
+	<aop:config>
+		<aop:advisor advice-ref="txAdvice"
+			pointcut="execution(* com.mvcweb.service.*.*(..))" />
+	</aop:config>
+
+
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>  
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+  	<!-- 对静态资源文件的访问   -->    
+    <mvc:default-servlet-handler /> 
+	
+
+	<!-- FileUpload Support -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="104857600" />
+		<property name="maxInMemorySize" value="4096" />
+	</bean>
+
+	<!-- Support json ResponseBody 支持json返回 ajax -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter" />
+
+    <!-- 总错误处理-->    
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">    
+	    <property name="defaultErrorView">      
+	        <value>500</value>    
+	    </property>    
+	    <property name="defaultStatusCode">      
+	        <value>500</value>    
+	    </property>       
+	    <property name="warnLogCategory">      
+	        <value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>    
+	    </property>       
+	</bean>    
+
+</beans>

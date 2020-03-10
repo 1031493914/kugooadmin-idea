@@ -1,0 +1,193 @@
+.navbar-nav > .user-menu > .dropdown-menu {
+  width: 100px !important;
+}
+
+
+
+
+.htm-bread {
+  border: 1px solid #dddddd;
+  margin-bottom: 2%;
+}
+.htm-bread .breadcrumb {
+  margin: 0;
+}
+.htm-entry {
+  border: solid 1px #dddddd;
+  padding: 2%;
+  margin-bottom: 2%;
+}
+.entry-line1 {
+  margin-bottom: 3%;
+}
+.htm-operation {
+  margin-bottom: 2%;
+  padding: 1%;
+  border: solid 1px #dddddd;
+  margin-left: 0 ;
+  margin-right: 0;
+}
+.htm-msg {
+  border: solid 1px #dddddd;
+  margin-bottom: 2%;
+  padding-bottom: 15px;
+}
+.htm-table {
+  padding-bottom: 2%;
+}
+.msg-title {
+  padding: 1%;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 2%;
+  margin-right: 0%;
+  margin-left: 0;
+}
+.pagelist {
+  margin-bottom: 3%;
+}
+/* .finish-btn {
+  margin-bottom: 4%;
+} */
+:root table tr td {
+  vertical-align: middle;
+}
+.goodsmanage,
+.updategoods,
+.lookgoods,
+.evaluationcontrol,
+.itemmanage,
+.labelmanage,
+.comment,
+.ordermanage,
+.aftermanage,
+.afterdetails,
+.recommendanage,
+.listmanage,
+.addrecommend,
+.updaterecommend,
+.lookecommend,
+.speciaoffer,
+.addctivity,
+.activityGoodsList,
+.selectActivityGoods,
+.lookActivityGoods,
+.tradeManage,
+.lookTrade,
+.tradeReview,
+.lookTradeReview,
+.magazine,
+.addMagazine,
+.optionrecommend,
+.updateMagazine,
+.lookMagazine,
+.golfCourse,
+.addGolfCourse,
+.updateGolfCourse,
+.lookGolfCourse,
+.commentManage,
+.usermanage,
+.tradingRecord,
+.userInfo,
+.orderRecord,
+.orderDetails,
+.updateActivity,
+.advert,
+.goodscheap,
+.chosegoodcheap,
+.chosegoodcheapNext,
+.systemmsg,
+.instationmsg,
+.sendinstationmsg,
+.phonemsg,
+.sendphonemsg {
+  margin: 4% 2% 2% 2%;
+}
+.modal {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding-top: 6%;
+}
+.modal-header {
+  background-color: #434343;
+  color: white;
+}
+.modal-body {
+  padding-top: 5%;
+}
+.modal-btn {
+  margin-top: 5%;
+}
+.speciaoffer .htm-table table tr td:nth-child(6) {
+  width: 15%;
+}
+.optionrecommend .htm-tab section {
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd;
+}
+.optionrecommend .htm-tab #tab1,
+.optionrecommend .htm-tab #tab2,
+.optionrecommend .htm-tab #tab3,
+.optionrecommend .htm-tab #tab4,
+.optionrecommend .htm-tab #tab5 {
+  display: none;
+}
+.optionrecommend .htm-tab .checkbtn {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 25px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+.optionrecommend .htm-tab .checkbtn:hover {
+  color: #555;
+  cursor: pointer;
+}
+.optionrecommend .htm-tab input:checked + .checkbtn {
+  color: black;
+  border: 1px solid #ddd;
+  border-top: 2px solid #3C8DBC;
+  border-bottom: 1px solid #fff;
+}
+.optionrecommend .htm-tab #tab1:checked ~ #content1,
+.optionrecommend .htm-tab #tab2:checked ~ #content2,
+.optionrecommend .htm-tab #tab3:checked ~ #content3,
+.optionrecommend .htm-tab #tab4:checked ~ #content4,
+.optionrecommend .htm-tab #tab5:checked ~ #content5 {
+  display: block;
+}
+.badge-corner {
+  position: relative;
+}
+.badge-corner .badge {
+  position: absolute;
+  right: -10px;
+  top: -9px;
+  font-weight: normal;
+  cursor: pointer;
+}
+.alert {
+  margin: 5% 10% !important;
+}
+
+.seat-xs {
+  padding: 3.5%;
+}
+.seat-sm {
+  padding: 2%;
+}
+.seat-md {
+  padding: 1%;
+}
+.seat-lg {
+  padding: .4%;
+}
+.bottom-button {
+    padding: .8% 1%;
+    background-color: #F2F2F2;
+    border: solid 1px #CCCCCC;
+    margin-left: 0;
+    margin-right: 0;
+    transition: all 3s ease 0;
+}
