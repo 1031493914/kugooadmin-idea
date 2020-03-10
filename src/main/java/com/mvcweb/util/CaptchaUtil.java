@@ -1,22 +1,15 @@
 package com.mvcweb.util;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.Random;
-
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Random;
 
 /**
  * @ClassName: CaptchaUtil
@@ -90,13 +83,16 @@ public class CaptchaUtil extends HttpServlet {
 		g.setColor(reverse);
 		g.drawString(randomString, 18, 20);
 		// 转成JPEG格式
-		ServletOutputStream out = response.getOutputStream();
-		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-		encoder.encode(bi);
-		out.flush();
+//		ServletOutputStream out = response.getOutputStream();
+//		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+//		encoder.encode(bi);
+//		out.flush();
+//		ImageIO.write(bi, "JPEG", out);
+//		ImageIO.write(dstImage, /*"GIF"*/ formatName /* format desired */ , new File(dstName) /* target */ );
+		ImageIO.write(bi, "JPEG", response.getOutputStream()); // 输出图片
 		HttpSession session = request.getSession(true);
 		session.setAttribute("randCheckCode", randomString);
 		g.dispose(); // 释放g所占用的系统资源
-		ImageIO.write(bi, "JPEG", response.getOutputStream()); // 输出图片
+
 	}
 }
