@@ -41,7 +41,7 @@ public class UserManageServiceImp extends BaseService implements UserManageServi
 				params.add(createtime1);
 				params.add(createtime2);
 			}
-			totalSize = (int) queryInteger(sql + sbBuffer.toString(), params.toArray());
+			totalSize = queryInteger(sql + sbBuffer.toString(), params.toArray());
 			page.setTotalSize(totalSize);
 		
 			if (totalSize == 0)

@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -46,10 +46,7 @@ public class BaseController {
 	 */
 	protected boolean auth(HttpServletRequest req) {
 		Integer stationId = (Integer) req.getSession().getAttribute("sessionUserId");
-		if (null == stationId) {
-			return false;
-		}
-		return true;
+		return null != stationId;
 	}
 
 	/**
@@ -78,12 +75,7 @@ public class BaseController {
 		if (value == null)
 			return null;
 		if ("GET".equalsIgnoreCase(req.getMethod())) {
-			try {
-				value = new String(value.getBytes("ISO-8859-1"), "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-				throw new RuntimeException(e);
-			}
+			value = new String(value.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
 		}
 		return value.trim();
 	}
@@ -267,8 +259,7 @@ public class BaseController {
 			try {
 				resp.setContentType("application/json;charset=UTF-8");
 				resp.getWriter().write(
-						new ObjectMapper().writeValueAsString(result)
-								.toString());
+						new ObjectMapper().writeValueAsString(result));
 				resp.getWriter().flush();
 			} catch (Exception e) {
 			}

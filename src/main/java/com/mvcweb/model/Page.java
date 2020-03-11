@@ -8,7 +8,7 @@ public class Page {
 	private int totalSize; //总记录数
 	private int totalPage;  //总页码
 	private int pageSize;  //每页大小
-	private int currentPage;;  //当前页
+	private int currentPage;  //当前页
 	
 	public Page(){
 		totalSize = 0;

@@ -199,9 +199,8 @@ public class WebRequestUtils extends ServletRequestUtils {
 	 * @return true 是一个ajax请求， false 不是
 	 */
 	public static boolean isAjaxRequest(HttpServletRequest request){
-		if(request.getHeader("X-Requested-With") != null) return true;
-		return false;
-	}
+        return request.getHeader("X-Requested-With") != null;
+    }
 	
 	/**
 	 * 获取文件上传的请求对象
@@ -254,9 +253,8 @@ public class WebRequestUtils extends ServletRequestUtils {
 	 */
 	public static boolean isImageContentType(String contentType){
 		if(contentType == null) return false;
-		if(!contentType.toLowerCase().startsWith("image")) return false;
-		return true;
-	}
+        return contentType.toLowerCase().startsWith("image");
+    }
 	
 	/**
 	 * 保存上传的文件，返回保存的文件名

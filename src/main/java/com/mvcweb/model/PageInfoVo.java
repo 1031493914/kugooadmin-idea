@@ -5,7 +5,7 @@ public class PageInfoVo {
 	private int totalSize; //总记录数
 	private int totalPage;  //总页码
 	private int pagesize = 10;  //每页大小,默认10
-	private int currentPage;;  //当前页
+	private int currentPage;  //当前页
 	private String orderBy; //排序方式 为空则表示不进行排序
 	
 	public int getTotalPage() {

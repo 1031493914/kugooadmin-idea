@@ -15,10 +15,7 @@ public class StringUtil {
 	}
 
 	public static boolean isNull(String str) {
-		if ("".equals(str) || null == str) {
-			return true;
-		}
-		return false;
-	}
+        return "".equals(str) || null == str;
+    }
 	
 }

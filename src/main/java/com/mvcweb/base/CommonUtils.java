@@ -443,8 +443,7 @@ public class CommonUtils {
      * @return true if the method is a get method
      */
     public static boolean isGetMethod(String str) {
-    	if (str != null && str.startsWith(GET)) return true;
-    	return false;
+        return str != null && str.startsWith(GET);
     }
     
     /**
@@ -454,8 +453,7 @@ public class CommonUtils {
      * @return true if the method is a set method
      */
     public static boolean isSetMethod(String str) {
-    	if (str != null && str.startsWith(SET)) return true;
-    	return false;
+        return str != null && str.startsWith(SET);
     }
     
     /**
