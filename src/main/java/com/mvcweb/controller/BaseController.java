@@ -32,7 +32,7 @@ public class BaseController {
 	/**
 	 * 文件上传保存地址
 	 */
-	public static final String ASSET_UPLOAD_PATH = "upload/";
+	public static final String ASSET_UPLOAD_PATH = "upload/1111111";
 
 	/**
 	 * 项目根路径
